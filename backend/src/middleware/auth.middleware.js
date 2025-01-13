@@ -6,7 +6,6 @@ export const protectRoute = async (req, res, next) => {
       .status(401)
       .json({ message: "Unauthorized - you must be legged in" });
   }
-
   next();
 };
 
@@ -24,6 +23,6 @@ export const requireAdmin = async (req, res, next) => {
 
     next();
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error", error });
+    next(error);
   }
 };
