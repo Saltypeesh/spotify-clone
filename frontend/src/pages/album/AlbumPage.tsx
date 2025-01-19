@@ -6,6 +6,11 @@ import { Clock, Pause, Play } from "lucide-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+const formatDuration = (second: number) => {
+  const minutes = Math.floor(second / 60);
+  const remainingSeconds = second % 60;
+  return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+};
 const AlbumPage = () => {
   const { albumId } = useParams();
   const { fetchAlbumById, currentAlbum, isLoading } = useMusicStore();
@@ -36,12 +41,6 @@ const AlbumPage = () => {
 
     playAlbum(currentAlbum?.songs, index);
   };
-
-  function formatDuration(second: number) {
-    const minutes = Math.floor(second / 60);
-    const remainingSeconds = second % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
-  }
 
   return (
     <div className="h-full">
