@@ -50,8 +50,8 @@ app.use(
 // cron jobs
 const tempDir = path.join(process.cwd(), "tmp");
 cron.schedule("0 * * * *", () => {
-  if (fstat.existsSync(tempDir)) {
-    fstat.readdir(tempDir, (err, files) => {
+  if (fs.existsSync(tempDir)) {
+    fs.readdir(tempDir, (err, files) => {
       if (err) {
         console.log("error", err);
         return;
